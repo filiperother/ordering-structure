@@ -1,0 +1,54 @@
+void merge(int *v, int n){
+	int meio = n/2, i, j, k;
+	int vetAux[n];
+		
+	i = 0;
+	j = meio;
+	k = 0;
+	
+	while(i<meio && j<n){
+		
+		if(v[i] <= v[j]){
+			vetAux[k++] = v[i++];
+			k++;
+			i++;
+		}else {
+			vetAux[k] = v[j];
+			k++;
+			j++;
+		}
+		
+	}
+	
+	if(i==meio){
+		while(j<n){
+			vetAux[k] = v[j];
+			k++;
+			j++;
+		}
+	}else{
+		while(i<meio){
+			vetAux[k] = v[i];
+			k++;
+			i++;
+		}
+	}
+	
+	for(i=0; i<n; i++)
+		v[i] = vetAux[i];
+}
+
+
+void mergesort(int *v, int n){
+	int meio;
+	
+	if(n>1){
+		meio = n/2;
+		
+		mergesort(v, meio);
+		mergesort(v+meio, n-meio);
+		
+		merge(v, n);
+	}
+	
+}
