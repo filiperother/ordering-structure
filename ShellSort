@@ -1,0 +1,18 @@
+void shellSortASC(int *vetor, int n){
+	int i, j, k, aux, indk;
+	int vetk[3]={5, 3, 1};
+	
+	for(indk = 0; indk < 3; indk++){
+		k = vetk[indk];
+		
+		for(i = k; i < n; i++){
+			aux = vetor[i];
+			
+			for(j = i - k; j >= 0 && vetor[j] > aux; j-=k)
+				vetor[j+k] = vetor[j];
+				
+			vetor[j+k] = aux;
+		}
+	}
+	
+}
